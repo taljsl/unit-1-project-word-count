@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    margin-top: 5%;
+    font-size: 64px;
+}
+
+.gamecontainer{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    align-items: center;
+
+
+}
+.welcome{
+    font-size: 32px;
+}
+
+input{
+    width: 20%;
+    margin:1%;
+}
+button{
+    cursor: auto;
+    padding:10px 20px;
+}
+

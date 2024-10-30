@@ -1,4 +1,4 @@
-const wordsArray= ["aa",
+export const wordsArray= ["aa",
 "aah",
 "aahed",
 "aahing",
@@ -178691,4 +178691,3 @@ const wordsArray= ["aa",
 "zzz"
 ]
 
-module.exports = wordsArray
