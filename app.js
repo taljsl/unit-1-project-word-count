@@ -40,9 +40,9 @@ console.dir(inputElement);
 
 const buttonElement = document.querySelector("button");
 
-const scoreElement = document.querySelector("score");
+const scoreElement = document.querySelector("#score");
 console.dir(scoreElement);
-const scoringElement = document.querySelector("scoring");
+const scoringElement = document.querySelector("#scoring");
 console.dir(scoringElement);
 let userInput = "";
 
@@ -102,7 +102,7 @@ if (scoringArray.length <= 3) {
   points += 2;
 } else points += 3;
 console.log("this checks", points);
-// scoringElement.textContent = `Great Job, that word was worth ${points}`
+scoringElement.textContent = `Great Job, that word was worth ${points} Points`
 score += points;
 };
 
@@ -116,7 +116,7 @@ buttonElement.addEventListener("click", () => {
   }
   if (validWord() === true) {
     scoreWord();
-    // scoreElement.value = `${score} Points Earned`
+    scoreElement.textContent = `${score} Points Earned`
   }
   console.log(score);
   clearInput();
