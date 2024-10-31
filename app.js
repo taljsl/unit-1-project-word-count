@@ -53,7 +53,6 @@ const gameOver = () => {
   usedWords = [];
   scoringElement.textContent = `You repeated a word. Game over, enter any new word to start over`;
   scoreElement.textContent = `${score} Points Earned`;
-  
 
   clearInput();
 };
@@ -105,23 +104,35 @@ const scoreWord = (word) => {
     points += 2;
   } else points += 3;
   console.log("this checks", points);
-  scoringElement.textContent = `Great Job, that word was worth ${points} Points`;
+  scoringElement.textContent = `Great Job, that word was worth ${points} Points!`;
   score += points;
 };
 
+
+
+const handleWordSubmission = () => {
+    if (notUsed() && validWord()) {
+        scoreWord();
+    
+        scoreElement.textContent = `${score} Points Earned`;
+        clearInput();
+      } else if (notUsed() && validWord() === false) {
+        scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again`;
+        clearInput();
+      } else {
+        gameOver();
+        clearInput()
+      }
+}
+
+
 // event listeners
 buttonElement.addEventListener("click", () => {
-  if (notUsed() && validWord()) {
-    scoreWord()
-    
-    scoreElement.textContent = `${score} Points Earned`;
-  } else {
-    gameOver();
-    
+    handleWordSubmission()
+});
+
+inputElement.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    handleWordSubmission()
   }
-  //   if (validWord() === true) {
-  //     scoreWord();
-  //   }
-  console.log(score);
-  clearInput();
 });
