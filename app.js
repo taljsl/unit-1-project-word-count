@@ -50,15 +50,15 @@ const clearInput = () => (inputElement.value = "");
 // resets the game
 const gameOver = () => {
   score = 0;
+  let totalWords = usedWords.length;
   usedWords = [];
-  scoringElement.textContent = `You repeated a word. Game over, enter any new word to start over`;
+  scoringElement.textContent = `You repeated a word after entering ${totalWords} words. Game over! Enter any new word to play again!`;
   scoreElement.textContent = `${score} Points Earned`;
 
   clearInput();
 };
 
 const notUsed = (word) => {
-
   word = userInput;
   if (!usedWords.includes(word)) {
     console.log("good to continue");
@@ -69,7 +69,6 @@ const notUsed = (word) => {
 };
 // check that word is legal to use
 const validWord = (word) => {
-
   word = userInput;
   // check that the input word is in our dictionary and not already used
   if (wordsArray.includes(word)) {
@@ -84,7 +83,7 @@ const validWord = (word) => {
 };
 
 const scoreWord = (word) => {
-//   
+  //
   word = userInput;
   //   splits the word into an array containing component pieces, failure to include the "" results in having an array containing the word itself
   const scoringArray = word.split("");
@@ -108,20 +107,47 @@ const scoreWord = (word) => {
   score += points;
 };
 
-const handleWordSubmission = () => {
-    userInput = inputElement.value.toLowerCase().trim();
-    if (notUsed() && validWord()) {
-    scoreWord();
+const invalidInputAnimation = () => {
+  inputElement.style.boxShadow = "10px 10px 10px red";
+//   the below will make the input box vibrate back and forth
+  const vibrate = setInterval(() =>{
+    // transform says we are moving it and translateX says where we are moving it on the X-axis.
+    inputElement.style.transform= 'translateX(-2px)';
+    setTimeout(()=>{
+        inputElement.style.transform = 'translateX(4px)';
+    },5)
 
-    scoreElement.textContent = `${score} Points Earned`;
-    clearInput();
-  } else if (notUsed() && validWord() === false) {
-    scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again`;
-    clearInput();
-  } else {
-    gameOver();
-    clearInput();
+  },10)
+  // undoes the rest of the function after time in milliseconds elapses
+  setTimeout(() => {
+    inputElement.style.boxShadow = "";
+    clearInterval(vibrate);
+  }, 250);
+};
+
+const handleWordSubmission = () => {
+  console.time("myTimer");
+  userInput = inputElement.value.toLowerCase().trim();
+  if (userInput !== "") {
+    if (notUsed() && validWord()) {
+      scoreWord();
+
+      scoreElement.textContent = `${score} Points Earned`;
+      clearInput();
+    } else if (notUsed() && validWord() === false) {
+      invalidInputAnimation();
+      scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again!`;
+    //   the below piece of code comes with help from chatgpt
+      if (/[^a-zA-Z]/.test(userInput)){
+        scoreElement.textContent = "I'm sorry you input an invalid character. Please make sure that you only input letters."
+      }
+
+    } else {
+      gameOver();
+      clearInput();
+    }
   }
+  console.timeEnd("myTimer");
 };
 
 // event listeners
