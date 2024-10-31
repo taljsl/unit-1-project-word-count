@@ -51,6 +51,11 @@ const clearInput = () => (inputElement.value = "");
 const gameOver = () => {
   score = 0;
   usedWords = [];
+  scoringElement.textContent = `You repeated a word. Game over, enter any new word to start over`;
+  scoreElement.textContent = `${score} Points Earned`;
+  
+
+  clearInput();
 };
 
 const notUsed = (word) => {
@@ -93,31 +98,30 @@ const scoreWord = (word) => {
     if (pointValues[letter]) {
       points += pointValues[letter];
     }
-
-    
-}
-if (scoringArray.length <= 3) {
-  points += 1;
-} else if (scoringArray.length > 3 && scoringArray.length <= 7) {
-  points += 2;
-} else points += 3;
-console.log("this checks", points);
-scoringElement.textContent = `Great Job, that word was worth ${points} Points`
-score += points;
+  }
+  if (scoringArray.length <= 3) {
+    points += 1;
+  } else if (scoringArray.length > 3 && scoringArray.length <= 7) {
+    points += 2;
+  } else points += 3;
+  console.log("this checks", points);
+  scoringElement.textContent = `Great Job, that word was worth ${points} Points`;
+  score += points;
 };
 
 // event listeners
 buttonElement.addEventListener("click", () => {
-  // notUsed();
-  if (notUsed() === true) {
-    validWord();
+  if (notUsed() && validWord()) {
+    scoreWord()
+    
+    scoreElement.textContent = `${score} Points Earned`;
   } else {
     gameOver();
+    
   }
-  if (validWord() === true) {
-    scoreWord();
-    scoreElement.textContent = `${score} Points Earned`
-  }
+  //   if (validWord() === true) {
+  //     scoreWord();
+  //   }
   console.log(score);
   clearInput();
 });
