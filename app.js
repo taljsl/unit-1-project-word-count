@@ -58,7 +58,7 @@ const gameOver = () => {
 };
 
 const notUsed = (word) => {
-  userInput = inputElement.value.toLowerCase();
+
   word = userInput;
   if (!usedWords.includes(word)) {
     console.log("good to continue");
@@ -69,7 +69,7 @@ const notUsed = (word) => {
 };
 // check that word is legal to use
 const validWord = (word) => {
-  userInput = inputElement.value.toLowerCase();
+
   word = userInput;
   // check that the input word is in our dictionary and not already used
   if (wordsArray.includes(word)) {
@@ -84,7 +84,7 @@ const validWord = (word) => {
 };
 
 const scoreWord = (word) => {
-  userInput = inputElement.value.toLowerCase();
+//   
   word = userInput;
   //   splits the word into an array containing component pieces, failure to include the "" results in having an array containing the word itself
   const scoringArray = word.split("");
@@ -108,31 +108,29 @@ const scoreWord = (word) => {
   score += points;
 };
 
-
-
 const handleWordSubmission = () => {
+    userInput = inputElement.value.toLowerCase().trim();
     if (notUsed() && validWord()) {
-        scoreWord();
-    
-        scoreElement.textContent = `${score} Points Earned`;
-        clearInput();
-      } else if (notUsed() && validWord() === false) {
-        scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again`;
-        clearInput();
-      } else {
-        gameOver();
-        clearInput()
-      }
-}
+    scoreWord();
 
+    scoreElement.textContent = `${score} Points Earned`;
+    clearInput();
+  } else if (notUsed() && validWord() === false) {
+    scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again`;
+    clearInput();
+  } else {
+    gameOver();
+    clearInput();
+  }
+};
 
 // event listeners
 buttonElement.addEventListener("click", () => {
-    handleWordSubmission()
+  handleWordSubmission();
 });
 
 inputElement.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
-    handleWordSubmission()
+    handleWordSubmission();
   }
 });
