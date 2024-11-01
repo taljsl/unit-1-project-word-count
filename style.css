@@ -34,3 +34,8 @@ button{
 .highScore{
     padding-left: 0;
 }
+
+h5{
+    font-size: 20px;
+    opacity: 0%;
+}

@@ -44,6 +44,7 @@ const scoringElement = document.querySelector("#scoring");
 const highScoreElement = document.querySelector(".highScore");
 const bodyElement = document.querySelector("body");
 const gameContainerElement = document.querySelector(".gamecontainer");
+const h5Element = document.querySelector('h5')
 let userInput = "";
 const highScores = [];
 const clearInput = () => (inputElement.value = "");
@@ -133,36 +134,38 @@ const highScorefunction = () => {
   //   disable the input and button until finished with score
   inputElement.toggleAttribute("disabled");
   inputElement.style.backgroundColor = "black";
+  
 
   enterYourName.style.width = "30%";
   enterYourName.style.height = "15%";
   enterYourName.placeholder = 'Type Your Name and Push "Enter" to Submit!';
   enterYourName.style.padding = "10px";
-  enterYourName.style.zIndex = "1";
+//   enterYourName.style.zIndex = "1";
   enterYourName.style.alignSelf = "center";
   enterYourName.style.justifySelf = "center";
 
   gameContainerElement.appendChild(enterYourName);
-  console.log(enterYourName);
+  
   enterYourName.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      if (enterYourName.value !== "") {
-        usersName = enterYourName.value;
-        highScores.push({ userName: usersName, userScore: usersScore });
-        highScores.sort((low, high) => high.userScore - low.userScore);
-        highScoreElement.replaceChildren();
-
-        for (let i = 0; i < highScores.length; i++) {
-          let liElement = document.createElement("li");
-          liElement.textContent = `${highScores[i].userName}: ${highScores[i].userScore} Points`;
-
-          highScoreElement.appendChild(liElement);
+      if (event.key === "Enter") {
+          if (enterYourName.value !== "") {
+              usersName = enterYourName.value;
+              highScores.push({ userName: usersName, userScore: usersScore });
+              highScores.sort((low, high) => high.userScore - low.userScore);
+              highScoreElement.replaceChildren();
+              
+              for (let i = 0; i < highScores.length; i++) {
+                  let liElement = document.createElement("li");
+                  liElement.textContent = `${highScores[i].userName}: ${highScores[i].userScore} Points`;
+                  
+                  highScoreElement.appendChild(liElement);
+                }
+            }
+            gameContainerElement.removeChild(enterYourName);
+            inputElement.removeAttribute("disabled");
+            inputElement.style.backgroundColor = "";
+            h5Element.style.opacity ='100%'
         }
-      }
-      gameContainerElement.removeChild(enterYourName);
-      inputElement.removeAttribute("disabled");
-      inputElement.style.backgroundColor = "";
-    }
   });
 };
 
