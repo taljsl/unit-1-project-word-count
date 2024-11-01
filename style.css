@@ -31,3 +31,6 @@ button{
     border-radius: 50px;
 }
 
+.highScore{
+    padding-left: 0;
+}
