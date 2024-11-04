@@ -36,7 +36,7 @@ const taHighScores = [];
 let score = 0;
 let userInput = "";
 let gameMode = "";
-let timeRemaining = 10;
+let timeRemaining = 120;
 let gameActive = false;
 let countdown;
 // element variables
@@ -159,7 +159,7 @@ const startOfGame = () => {
     classicButtonElement.toggleAttribute("disabled");
     timeAttackButtonElement.toggleAttribute("disabled");
     if (gameMode === "TimeAttack") {
-        timeRemaining = 10
+        timeRemaining = 120
       countdown = setInterval(updateTimer, 1000);
     }
   }
