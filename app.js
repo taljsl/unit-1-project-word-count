@@ -234,6 +234,14 @@ const handleWordSubmission = () => {
       scoreWord(userInput);
       scoreElement.textContent = `${score} Points Earned`;
       clearInput();
+    } else if (notUsed(userInput) && validWord(userInput) === false) {
+      invalidInputAnimation();
+      scoreElement.textContent = `I'm sorry that word is not in our dictionary or it was misspelled. Please try again!`;
+      //   the below piece of code comes with help from chatgpt
+      if (/[^a-zA-Z]/.test(userInput)) {
+        scoreElement.textContent =
+          "I'm sorry you input an invalid character. Please make sure that you only input letters.";
+      }
     } else {
       highScorefunction();
       gameOver();
