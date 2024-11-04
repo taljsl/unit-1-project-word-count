@@ -36,7 +36,7 @@ const taHighScores = [];
 let score = 0;
 let userInput = "";
 let gameMode = "";
-let timeRemaining = 5;
+let timeRemaining = 10;
 let gameActive = false;
 let countdown;
 // element variables
@@ -70,8 +70,8 @@ const gameOver = () => {
 
   classicButtonElement.removeAttribute("disabled");
   timeAttackButtonElement.removeAttribute("disabled");
-  //   gives timer the chance to check
-  timeRemaining = 1;
+  
+  
   clearInput();
   clearInterval(countdown);
 };
@@ -145,7 +145,8 @@ const updateTimer = () => {
   welcomeElement.innerText = `${timeRemaining} Seconds Remain`;
   welcomeElement.style.fontSize = "28px";
   timeRemaining--;
-  if (timeRemaining <= 0) {
+//   changed the if condition here from 0 to neg 1 as timer was calling game over with 2 seonds remaining
+  if (timeRemaining <= -1) {
     clearInterval(countdown);
     welcomeElement.innerText = "Times Up!";
     highScorefunction();
@@ -158,7 +159,7 @@ const startOfGame = () => {
     classicButtonElement.toggleAttribute("disabled");
     timeAttackButtonElement.toggleAttribute("disabled");
     if (gameMode === "TimeAttack") {
-        timeRemaining = 5
+        timeRemaining = 10
       countdown = setInterval(updateTimer, 1000);
     }
   }

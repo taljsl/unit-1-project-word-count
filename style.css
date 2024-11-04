@@ -43,9 +43,7 @@ h1{
 .gamecontainer{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
     align-items: center;
-
 
 }
 .welcome{
@@ -59,6 +57,12 @@ input{
     text-align: center;
 
 }
+@media(max-width: 500px){
+    input{
+        width: 50%
+    }
+}
+
 button{
     cursor: auto;
     padding:10px 20px;
@@ -72,10 +76,20 @@ button{
 
 .highScoreList{
     font-size: 20px;
-    /* opacity: 0%; */
+    opacity: 0%;
+    text-align: center;
+    margin: 5px
 }
 
 .taHighScoreList{
     font-size: 20px;
-    /* opacity: 0%; */
+    opacity: 0%;
+    text-align: center;
+    margin: 5px;
+    padding: 0;
+}
+
+.highScoreTA{
+    
+    padding-left: 0;
 }
