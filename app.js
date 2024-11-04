@@ -70,8 +70,7 @@ const gameOver = () => {
 
   classicButtonElement.removeAttribute("disabled");
   timeAttackButtonElement.removeAttribute("disabled");
-  
-  
+
   clearInput();
   clearInterval(countdown);
 };
@@ -145,7 +144,7 @@ const updateTimer = () => {
   welcomeElement.innerText = `${timeRemaining} Seconds Remain`;
   welcomeElement.style.fontSize = "28px";
   timeRemaining--;
-//   changed the if condition here from 0 to neg 1 as timer was calling game over with 2 seonds remaining
+  //   changed the if condition here from 0 to neg 1 as timer was calling game over with 2 seonds remaining
   if (timeRemaining <= -1) {
     clearInterval(countdown);
     welcomeElement.innerText = "Times Up!";
@@ -159,7 +158,7 @@ const startOfGame = () => {
     classicButtonElement.toggleAttribute("disabled");
     timeAttackButtonElement.toggleAttribute("disabled");
     if (gameMode === "TimeAttack") {
-        timeRemaining = 120
+      timeRemaining = 120;
       countdown = setInterval(updateTimer, 1000);
     }
   }
@@ -229,16 +228,17 @@ const highScorefunction = () => {
 const handleWordSubmission = () => {
   userInput = inputElement.value.toLowerCase().trim();
   if (userInput !== "") {
-    startOfGame(); 
-if (notUsed(userInput) && validWord(userInput)) {
-    usedWords.push(userInput);
-    scoreWord(userInput);
-    scoreElement.textContent = `${score} Points Earned`
-    clearInput();
-}else{ highScorefunction();
-    gameOver();
-}
-}
+    startOfGame();
+    if (notUsed(userInput) && validWord(userInput)) {
+      usedWords.push(userInput);
+      scoreWord(userInput);
+      scoreElement.textContent = `${score} Points Earned`;
+      clearInput();
+    } else {
+      highScorefunction();
+      gameOver();
+    }
+  }
 };
 
 // event listeners
