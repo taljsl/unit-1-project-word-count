@@ -1,3 +1,10 @@
+body{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
 h1{
     text-align: center;
     margin-top: 5%;
@@ -5,6 +12,33 @@ h1{
     
     
 }
+/*Styling for .buttoncontainer through the end of.rulestext made using chatgpt with naming convention by me*/
+
+.buttoncontainer{
+    display: flex;
+    gap:5px;
+    place-content: center;
+}
+.button-wrapper{
+    position:relative
+}
+.button-wrapper:hover .rulestext{
+    display: block;
+}
+
+.rulestext{
+    display: none; /* Initially hide the information text */
+    position: absolute; /* Position it absolutely within the button wrapper */
+    top: 100%; /* Position it below the button */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color: #f9f9f9; /* Background color */
+    border: 1px solid #ccc; /* Border styling */
+    padding: 10px; /* Padding around the text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    z-index: 1; /* Ensure it appears above other elements */
+}
+
 
 .gamecontainer{
     display: flex;
@@ -29,13 +63,19 @@ button{
     cursor: auto;
     padding:10px 20px;
     border-radius: 50px;
+    margin: 5px 5px;
 }
 
 .highScore{
     padding-left: 0;
 }
 
-h5{
+.highScoreList{
     font-size: 20px;
-    opacity: 0%;
+    /* opacity: 0%; */
+}
+
+.taHighScoreList{
+    font-size: 20px;
+    /* opacity: 0%; */
 }

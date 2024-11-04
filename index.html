@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Master</title>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js" defer></script>
     <link rel="stylesheet" href="./style.css" />
 <body>
     <h1>Word Master</h1>
+    <div class="buttoncontainer">
+        <div class="button-wrapper">
+            <button class="classic">Classic</button>
+            <div class="rulestext">The Original Game. Keep Going Until You Repeat A Word!</div>
+        </div>
+        <div class="button-wrapper">
+            <button class="timeattack">Two Minute Time Attack</button>
+            <div class="rulestext">A Test Under Pressure. How Many Words Can You Get In Two Minutes Without A Repeat?</div>
+        </div>
+    </div>
     <div class="gamecontainer">
-        <p class="welcome">Welcome to Word Master. The rules are simple. Submit as many unique words as you can below to earn points. If you repeat a word it's game over.</p>
+        <p id= "welcome">Welcome to Word Master. The rules are simple. Submit as many unique words as you can below to earn points. If you repeat a word it's game over.</p>
         <p id="scoring">Letters have the same point values that they have in Scrabble. Furthermore you will get 1 bonus point if the word is less than 3 characters, 2 bonus points if it's 4-7 characters, and 3 bonus points for words over 7 characters!</p>
         <p id="score"></p>
-        <input type="text" placeholder="Your Word Here">
-        <button>Submit</button>
-        <h5>High Scores!</h5>
+        <input type="text" placeholder="Select a Game Mode to Unlock" disabled>
+        <button class="submitbutton">Submit</button>
+        <h5 class = highScoreList>High Scores!</h5>   
         <ol class="highScore"></ol>
+        <h5 class="taHighScoreList">Time Attack High Scores</h5>
+        <ol class="highScoreTA"></ol>
     </div>
 </body>
 </html>
