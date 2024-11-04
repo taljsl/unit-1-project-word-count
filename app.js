@@ -68,11 +68,10 @@ const gameOver = () => {
   usedWords = [];
   gameActive = false;
 
-  classicButtonElement.removeAttribute("disabled");
-  timeAttackButtonElement.removeAttribute("disabled");
+  
 
   clearInput();
-//   stops countdown from progressing if present, line added with help  of chtagpt
+  //   stops countdown from progressing if present, line added with help  of chtagpt
   clearInterval(countdown);
 };
 
@@ -97,12 +96,11 @@ const validWord = (word) => {
 };
 
 const scoreWord = (word) => {
-  
   word = userInput;
   //   splits the word into an array containing component pieces, failure to include the "" results in having an array containing the word itself
   const scoringArray = word.split("");
   scoringArray.sort();
-//   take each letter in our word and check it against the object containing our scores.
+  //   take each letter in our word and check it against the object containing our scores.
   let points = 0;
   for (let i = 0; i < scoringArray.length; i++) {
     let letter = scoringArray[i];
@@ -122,13 +120,13 @@ const scoreWord = (word) => {
 };
 
 const invalidInputAnimation = () => {
-    // makes the box flash red
+  // makes the box flash red
   inputElement.style.boxShadow = "10px 10px 10px red";
   //   the below will make the input box vibrate back and forth and was taught in a lesson to me by chatgpt
   const vibrate = setInterval(() => {
     // transform says we are moving it and translateX says where we are moving it on the X-axis.
     inputElement.style.transform = "translateX(-2px)";
-    
+
     setTimeout(() => {
       inputElement.style.transform = "translateX(4px)";
     }, 5);
@@ -154,15 +152,16 @@ const updateTimer = () => {
 const startOfGame = () => {
   if (gameActive === false) {
     gameActive = true;
-    classicButtonElement.toggleAttribute("disabled");
-    timeAttackButtonElement.toggleAttribute("disabled");
+    classicButtonElement.setAttribute("disabled", "");
+    timeAttackButtonElement.setAttribute("disabled", "");
     if (gameMode === "TimeAttack") {
       timeRemaining = 120;
       countdown = setInterval(updateTimer, 1000);
-    }if (gameMode === 'Classic'){
-        welcomeElement.textContent = 'How Many Words Will You Get?'
     }
-      }
+    if (gameMode === "Classic") {
+      welcomeElement.textContent = "How Many Words Will You Get?";
+    }
+  }
 };
 
 const highScorefunction = () => {
@@ -219,7 +218,8 @@ const highScorefunction = () => {
         gameContainerElement.removeChild(enterYourName);
         inputElement.removeAttribute("disabled");
         submitButtonElement.removeAttribute("disabled");
-
+        classicButtonElement.removeAttribute("disabled");
+        timeAttackButtonElement.removeAttribute("disabled");
         inputElement.style.backgroundColor = "";
       }
     }
@@ -282,4 +282,3 @@ timeAttackButtonElement.addEventListener("click", () => {
   inputElement.placeholder = "Your Word Here";
   console.log(gameMode);
 });
-
